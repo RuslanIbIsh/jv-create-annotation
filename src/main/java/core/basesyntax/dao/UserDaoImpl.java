@@ -24,9 +24,10 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void update(User user) {
-        int index = Storage.users.indexOf(user);
-        Storage.users.set(index, user);
+    public void update(User updatedUser) {
+        User oldUser = getByName(updatedUser.getName()).orElseThrow();
+        int index = Storage.users.indexOf(oldUser);
+        Storage.users.set(index, updatedUser);
     }
 
     @Override
