@@ -7,8 +7,12 @@ import java.util.Optional;
 
 public class UserDaoImpl implements UserDao {
     @Override
-    public Optional<User> get(int index) {
-        return Optional.ofNullable(Storage.users.get(index));
+    public Optional<User> getByName(String name) {
+        return Optional.ofNullable(Storage.users.stream()
+                .filter(user -> user.getName().equals(name))
+                .findFirst()
+                .get()
+        );
     }
 
     @Override
@@ -22,7 +26,9 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void update(int index, User user) {
+    public void update(String name) {
+        User user = getByName(name).get();
+        int index = Storage.users.indexOf(user);
         Storage.users.set(index, user);
     }
 

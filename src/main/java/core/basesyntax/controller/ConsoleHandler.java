@@ -37,7 +37,7 @@ public class ConsoleHandler {
                 user = new User(userName, userAge);
                 userDao.save(user);
                 System.out.println(bet.toString());
-            } catch (ArrayIndexOutOfBoundsException e) {
+            } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
                 System.out.println("Please, enter correct data");
             }
         }

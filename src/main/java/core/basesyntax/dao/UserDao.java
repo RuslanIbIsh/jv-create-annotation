@@ -5,13 +5,13 @@ import java.util.List;
 import java.util.Optional;
 
 public interface UserDao {
-    Optional<User> get(int index);
+    Optional<User> getByName(String name);
 
     List<User> getAll();
 
     void save(User user);
 
-    void update(int index, User user);
+    void update(String name);
 
     void delete(User user);
 }
