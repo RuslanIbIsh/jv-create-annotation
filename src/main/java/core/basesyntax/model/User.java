@@ -1,23 +1,12 @@
 package core.basesyntax.model;
 
 public class User {
-    private int id;
     private String name;
-    private String lastName;
-    private String email;
+    private int age;
 
-    public User(String name, String lastName, String email) {
+    public User(String name, int age) {
         this.name = name;
-        this.lastName = lastName;
-        this.email = email;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        this.age = age;
     }
 
     public String getName() {
@@ -28,19 +17,11 @@ public class User {
         this.name = name;
     }
 
-    public String getLastName() {
-        return lastName;
+    public int getAge() {
+        return age;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setAge(int age) {
+        this.age = age;
     }
 }

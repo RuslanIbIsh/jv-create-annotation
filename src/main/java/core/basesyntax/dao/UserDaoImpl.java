@@ -7,8 +7,8 @@ import java.util.Optional;
 
 public class UserDaoImpl implements UserDao {
     @Override
-    public Optional<User> get(int id) {
-        return Optional.ofNullable(Storage.users.get(id));
+    public Optional<User> get(int index) {
+        return Optional.ofNullable(Storage.users.get(index));
     }
 
     @Override
@@ -22,8 +22,8 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void update(User user) {
-        Storage.users.set(user.getId(), user);
+    public void update(int index, User user) {
+        Storage.users.set(index, user);
     }
 
     @Override
