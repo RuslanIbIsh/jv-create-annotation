@@ -2,6 +2,7 @@ package core.basesyntax.controller;
 
 import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.UserDao;
+import core.basesyntax.lib.Inject;
 import core.basesyntax.model.Bet;
 import core.basesyntax.model.User;
 import java.util.Scanner;
@@ -9,12 +10,12 @@ import java.util.Scanner;
 public class ConsoleHandler {
     private static final String EXIT_COMMAND = "q";
     private static final String SEPARATOR = " ";
+    @Inject
     private BetDao betDao;
+    @Inject
     private UserDao userDao;
 
-    public ConsoleHandler(BetDao betDao, UserDao userDao) {
-        this.betDao = betDao;
-        this.userDao = userDao;
+    public ConsoleHandler() {
     }
 
     public void handle() {
@@ -36,6 +37,7 @@ public class ConsoleHandler {
                 betDao.add(bet);
                 user = new User(userName, userAge);
                 userDao.save(user);
+                System.out.println(user.toString());
                 System.out.println(bet.toString());
             } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
                 System.out.println("Please, enter correct data");
