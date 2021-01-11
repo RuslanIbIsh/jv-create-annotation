@@ -17,7 +17,7 @@ public class ConsoleHandlerInjector {
         Object instance = constructor.newInstance();
         Field[] clazzDeclaredFields = clazz.getDeclaredFields();
         for (Field field : clazzDeclaredFields) {
-            if (field.getAnnotation(Inject.class) != null) {
+            if (field.isAnnotationPresent(Inject.class)) {
                 field.setAccessible(true);
                 if (field.getType().equals(BetDao.class)) {
                     if (isAnnotationDao(BetDaoImpl.class)) {
