@@ -4,6 +4,7 @@ import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.dao.UserDao;
 import core.basesyntax.dao.UserDaoImpl;
+import core.basesyntax.exception.DaoAnnotationException;
 import core.basesyntax.factory.BetDaoFactory;
 import core.basesyntax.factory.UserDaoFactory;
 import java.lang.reflect.Constructor;
@@ -12,7 +13,8 @@ import java.lang.reflect.InvocationTargetException;
 
 public class ConsoleHandlerInjector {
     public static Object getInstance(Class clazz) throws NoSuchMethodException,
-            IllegalAccessException, InvocationTargetException, InstantiationException {
+            IllegalAccessException, InvocationTargetException, InstantiationException,
+            DaoAnnotationException {
         Constructor constructor = clazz.getConstructor();
         Object instance = constructor.newInstance();
         Field[] clazzDeclaredFields = clazz.getDeclaredFields();
@@ -35,10 +37,10 @@ public class ConsoleHandlerInjector {
         return instance;
     }
 
-    private static boolean isAnnotationDao(Class clazz) {
+    private static boolean isAnnotationDao(Class clazz) throws DaoAnnotationException {
         if (clazz.getAnnotation(Dao.class) != null) {
             return true;
         }
-        return false;
+        throw new DaoAnnotationException("Your class doesn't have @Dao annotation");
     }
 }

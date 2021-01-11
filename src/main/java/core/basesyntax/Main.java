@@ -1,6 +1,7 @@
 package core.basesyntax;
 
 import core.basesyntax.controller.ConsoleHandler;
+import core.basesyntax.exception.DaoAnnotationException;
 import core.basesyntax.lib.ConsoleHandlerInjector;
 import java.lang.reflect.InvocationTargetException;
 
@@ -17,6 +18,8 @@ public class Main {
             throw new RuntimeException("Doesn't exist ConsoleHandler class", e);
         } catch (InstantiationException e) {
             throw new RuntimeException("Can't create instance of ConsoleHandler", e);
+        } catch (DaoAnnotationException e) {
+            throw new RuntimeException("Daoimpl class not exists", e);
         }
         System.out.println("Please, enter Name, age, value and risk for your bet!");
         handler.handle();
